@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multitool-back
+  labels:
+    app: multitool-back
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: multitool-back
+  template:
+    metadata:
+      labels:
+        app: multitool-back
+    spec:
+      containers:
+      - name: network-multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "20Mi"
+          limits:
+            cpu: "10m"
+            memory: "20Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: multitool-back-svc
+spec:
+  ports:
+    - name: mtools-svc-back
+      port: 80
+  selector:
+    app: multitool-back
