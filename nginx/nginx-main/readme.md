@@ -1,0 +1,2 @@
+helm install footer-svc --namespace test7 -f values_footer.yaml oci://registry-1.docker.io/bitnamicharts/nginx
+helm install header-svc --namespace test7 -f values_header.yaml oci://registry-1.docker.io/bitnamicharts/nginx
